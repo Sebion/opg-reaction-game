@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ReactBase.iml" filepath="$PROJECT_DIR$/ReactBase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/opg-reaction-game.iml" filepath="$PROJECT_DIR$/opg-reaction-game.iml" />
     </modules>
   </component>
 </project>
