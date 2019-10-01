@@ -24,7 +24,7 @@ class Controller {
             stage.setTitle(title);
             stage.setResizable(false);
             stage.show();
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
