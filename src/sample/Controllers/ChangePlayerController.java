@@ -56,7 +56,7 @@ public class ChangePlayerController extends Controller{
             stage.setTitle(title);
             stage.setResizable(false);
             stage.show();
-            MainMenuController mainMenuController = new MainMenuController();
+            MainMenuController mainMenuController = loader.getController();
             mainMenuController.onCreate(player);
 
         } catch (IOException e) {

@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a1a16ece-4db4-4ae4-a319-e535ab9b7933" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/opg-reaction-game/sample/Controllers/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/opg-reaction-game/sample/Controllers/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/opg-reaction-game/sample/Controllers/MainMenuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/opg-reaction-game/sample/Controllers/MainMenuController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Controllers/ChangePlayerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controllers/ChangePlayerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Controllers/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controllers/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Controllers/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controllers/MainMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/FXMLS/MainMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/FXMLS/MainMenu.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="a1a16ece-4db4-4ae4-a319-e535ab9b7933" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +159,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1569955049673" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1569955832471" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../mygymmate" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -215,12 +207,12 @@
       <option name="presentableId" value="Default" />
       <updated>1569868909010</updated>
       <workItem from="1569868911643" duration="704000" />
-      <workItem from="1569940999075" duration="14120000" />
+      <workItem from="1569940999075" duration="14513000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14120000" />
+    <option name="totallyTimeSpent" value="14513000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
