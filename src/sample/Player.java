@@ -2,13 +2,13 @@ package sample;
 
 public class Player {
 
-    private String name;
-    private float highScore;
+    private String name="Default";
+    private float highScore=0;
     private float actualScore;
 
 
-    public Player(String name) {
-        this.name = name;
+    public Player() {
+
     }
 
     public String getName() {

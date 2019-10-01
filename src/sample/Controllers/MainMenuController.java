@@ -4,8 +4,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import sample.Constants;
 import sample.FXMLPATH;
+import sample.Player;
+
+import javax.xml.soap.Text;
 
 public class MainMenuController extends Controller {
+
+    private Player player;
+
+    @FXML
+    private Text welcomeText;
 
     @FXML
     private Button playButton;

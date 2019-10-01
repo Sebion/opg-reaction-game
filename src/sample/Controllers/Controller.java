@@ -24,6 +24,7 @@ class Controller {
             stage.setTitle(title);
             stage.setResizable(false);
             stage.show();
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -31,5 +32,6 @@ class Controller {
 
     public void goBack(Scene scene){
         setSceneTo(scene, FXMLPATH.MAIN_MENU, Constants.APP_NAME);
+
     }
 }
