@@ -1,6 +1,7 @@
 package sample.Controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
@@ -8,9 +9,12 @@ import sample.Constants;
 import sample.FXMLPATH;
 import sample.Player;
 
+import javax.naming.Name;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 
-public class MainMenuController extends Controller {
+public class MainMenuController extends Controller implements Initializable {
 
     private Player player = new Player();
 
@@ -25,18 +29,11 @@ public class MainMenuController extends Controller {
     @FXML
     private Button quitButton;
 
-
-    public void onCreate(Player player) {
-        this.player = player;
-        this.player.setName(player.getName());
-        this.player.setHighScore(player.getHighScore());
-
-        System.out.println(player.getName()+"menoooooo"+welcomeLabel.getText());
-        welcomeLabel.setText("Welcome "+player.getName()+" !");
-
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        this.player= NameInputController.player;
+        welcomeLabel.setText("Welcome "+ player.getName()+" !");
     }
-
-
 
     @FXML
     public void play_button_pressed() {

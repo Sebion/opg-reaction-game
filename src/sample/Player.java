@@ -11,7 +11,12 @@ public class Player {
 
     }
 
-    public String getName() {
+    public Player(String name, float highScore) {
+        this.name = name;
+        this.highScore = highScore;
+    }
+
+    public String  getName() {
         return name;
     }
 

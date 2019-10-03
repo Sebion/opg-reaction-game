@@ -29,39 +29,21 @@ public class ChangePlayerController extends Controller{
     @FXML
     public void on_back_button_pressed(){
 
-        setSceneTo(nameField.getScene(),player);
+       goBack(nameField.getScene());
     }
 
     @FXML
     public  void on_submitButton_pressed(){
 
-        if (!nameField.getText().equals(null)){
-            player.setName(nameField.getText());
+        if (!nameField.getText().equals("")){
+            NameInputController.player.setName(nameField.getText());
+            goBack(nameField.getScene());
         }
 
 
     }
 
 
-    void setSceneTo(Scene scene, Player player) {
-        Stage stage = (Stage) scene.getWindow();
-        changeScene(stage, FXMLPATH.MAIN_MENU, Constants.APP_NAME);
-    }
-    private void changeScene(Stage stage, String fxml, String title) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
-        try {
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.setTitle(title);
-            stage.setResizable(false);
-            stage.show();
-            MainMenuController mainMenuController = loader.getController();
-            mainMenuController.onCreate(player);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
 }

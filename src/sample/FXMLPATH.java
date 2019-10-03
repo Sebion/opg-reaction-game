@@ -6,4 +6,5 @@ public class FXMLPATH {
     public static String PLAY = "../FXMLS/Play.fxml";
     public static String SCOREBOARD = "../FXMLS/Scoreboard.fxml";
     public static String CHANGE_PLAYER = "../FXMLS/ChangePlayer.fxml";
+    public static String NAME_INPUT = "../FXMLS/NameInput.fxml";
 }

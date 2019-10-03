@@ -6,4 +6,5 @@ public class Constants {
     public static String PLAY_TITLE = "Play!";
     public static String CHANGE_PLAYER_TITLE = "Change player";
     public static String SCOREBOARD_TITLE = "Scoreboard";
+    public static String NAME_INPUT = "Welcome !";
 }
