@@ -8,7 +8,9 @@ import sample.FileController;
 import sample.Player;
 
 import java.io.File;
+import java.io.FileReader;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class PlayController extends Controller implements Initializable {
@@ -22,11 +24,10 @@ public class PlayController extends Controller implements Initializable {
     private Player player;
 
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        fileController=new FileController();
-        player=NameInputController.player;
+        fileController = new FileController();
+        player = NameInputController.player;
     }
 
     @FXML
@@ -54,11 +55,24 @@ public class PlayController extends Controller implements Initializable {
             gameButton.setDisable(true);
 
             long finalTime = System.currentTimeMillis() - startTime;
-            if (finalTime<3){
+            if (finalTime < 100) {
                 gameButton.setText("Cheater!");
-            }else
-            gameButton.setText(String.valueOf(finalTime));
-            fileController.write(player.getName(),String.valueOf(finalTime));
+            } else {
+                gameButton.setText(String.valueOf(finalTime));
+                ArrayList<Player> players = fileController.read();
+                for (int i = 0; i < players.size(); i++) {
+                    if (players.get(i).getName().equals(player.getName())) {
+                        if (players.get(i).getHighScore() > finalTime) {
+                            fileController.write(player.getName(), String.valueOf(finalTime));
+                            return;
+                        }
+
+                    }
+                }
+                fileController.write(player.getName(), String.valueOf(finalTime));
+            }
+
+
         });
 
     }

@@ -1,6 +1,7 @@
 package sample;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,7 +10,7 @@ public class FileController {
     public void write(String name, String score) {
         BufferedWriter bw = null;
         try {
-            FileWriter fw = new FileWriter("C:\\Users\\Sebastián\\IdeaProjects\\ReactBase\\opg-reaction-game\\src\\sample\\score.txt", true);
+            FileWriter fw = new FileWriter("C:\\Users\\Sebastian\\IdeaProjects\\ReactBase\\src\\sample\\score.txt", true);
              bw = new BufferedWriter(fw);
 
             bw.write(name + " " + score);
@@ -33,19 +34,20 @@ public class FileController {
         }
 
 
-        public Map<String,Long> read(){
+        public ArrayList<Player> read(){
 
-            Map<String,Long> highScore = new HashMap<>();
+            ArrayList<Player> highScore = new ArrayList<>();
             BufferedReader objReader = null;
             try {
                 String strCurrentLine;
 
-                objReader = new BufferedReader(new FileReader("C:\\Users\\Sebastián\\IdeaProjects\\ReactBase\\opg-reaction-game\\src\\sample\\score.txt"));
+                objReader = new BufferedReader(new FileReader("C:\\Users\\Sebastian\\IdeaProjects\\ReactBase\\src\\sample\\score.txt"));
 
                 while ((strCurrentLine = objReader.readLine()) != null) {
 
-                    String[] splited = strCurrentLine.split(" ");
-                    highScore.put(splited[0],Long.parseLong(splited[1]));
+                        String[] splited = strCurrentLine.split(" ");
+                        highScore.add(new Player(splited[0],Long.parseLong(splited[1])));
+
 
 
                 }

@@ -1,6 +1,8 @@
 package sample;
 
-public class Player {
+import sample.Controllers.PlayController;
+
+public class Player implements Comparable{
 
     private String name="Default";
     private float highScore=0;
@@ -15,6 +17,18 @@ public class Player {
         this.name = name;
         this.highScore = highScore;
     }
+
+    @Override
+    public int compareTo(Object comparestu) {
+        long compareage= (int) ((Player)comparestu).getHighScore();
+        /* For Ascending order*/
+        return (int) (this.highScore-compareage);
+
+        /* For Descending order do like this */
+        //return compareage-this.studentage;
+    }
+
+
 
     public String  getName() {
         return name;

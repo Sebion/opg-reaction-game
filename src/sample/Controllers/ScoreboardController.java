@@ -12,51 +12,52 @@ import sample.FileController;
 import sample.Player;
 
 import java.net.URL;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class ScoreboardController extends Controller implements Initializable {
     @FXML
     private Button backButton;
-    private TableView tableView;
+
+    @FXML
+    private TableView<Player> scoreTable;
+    @FXML
+    private TableColumn<Player, String> player;
+    @FXML
+    private TableColumn<Player, Long> highScore;
+
+
     private FileController fileController;
-    private Map<String,Long> highScore;
+    private ArrayList<Player> highScoreMap;
 
 
     @FXML
-    public void on_back_button_pressed(){
+    public void on_back_button_pressed() {
 
         goBack(backButton.getScene());
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    tableView = new TableView();
-    fileController = new FileController();
-    highScore = fileController.read();
+        fileController = new FileController();
+        highScoreMap = fileController.read();
+        ArrayList<Player> top10 = new ArrayList<>();
+        Collections.sort(highScoreMap);
+
+        for (int i = 0;i <10; i++) {
+            top10.add(highScoreMap.get(i));
+        }
+        System.out.println(highScoreMap);
 
 
-
-    ObservableList<Player> players = FXCollections.observableArrayList(
-                new Player("Amos",546 ),
-                new Player("Keep",5554 )
-                );
+        player.setCellValueFactory(new PropertyValueFactory<>("name"));
+        highScore.setCellValueFactory(new PropertyValueFactory<>("highScore"));
+        ObservableList<Player> players = FXCollections.observableArrayList(top10);
 
 
-        TableColumn<Player, String> column1 = new TableColumn<>("Player");
-        column1.setCellValueFactory(new PropertyValueFactory<>("name"));
-
-
-        TableColumn<Player, Long> column2 = new TableColumn<>("Highscore");
-        column2.setCellValueFactory(new PropertyValueFactory<>("highScore"));
-
-        tableView.setItems(players);
-
-
+        scoreTable.setItems(players);
 
 
     }
-
 
 
 }

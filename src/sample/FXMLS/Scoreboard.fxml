@@ -15,8 +15,10 @@
       </Button>
       <TableView fx:id="scoreTable" layoutX="157.0" layoutY="43.0" prefHeight="268.0" prefWidth="287.0">
         <columns>
-          <TableColumn prefWidth="172.0" text="Player" />
-          <TableColumn prefWidth="114.0" text="Highscore" />
+          <TableColumn fx:id="player" prefWidth="172.0" text="Player" />
+
+            <TableColumn fx:id="highScore" prefWidth="120.0" text="Score" />
+
         </columns>
       </TableView>
    </children>
