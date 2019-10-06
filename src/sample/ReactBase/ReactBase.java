@@ -30,9 +30,12 @@ package sample.ReactBase;/*
     Hra musí ošetriť aj predčasné stlačenie pred zobrazením START ako chybu a potrestať ju (spôsob trestu je na vás)
 */
 
+import sample.Player;
+
 import java.io.*;
 import java.lang.management.BufferPoolMXBean;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class ReactBase {
@@ -40,16 +43,27 @@ public class ReactBase {
     final int CM_CHANGE_PLAYER = 2;
     final int CM_TOP10 = 3;
     final int CM_QUIT = 4;
-    String player= "Default";
-    Scanner sc;
-    private ArrayList<String> records;
+
+    private Scanner sc;
+    private ArrayList<Player> records;
+    private Player player;
 
 
+    public static void main(String[] args) throws InterruptedException {
+        boolean gameOn;
+        ReactBase reactBase = new ReactBase();
+        do {
+            gameOn = reactBase.Run();
+        } while (gameOn);
+    }
 
     public ReactBase() {
         records = new ArrayList<>();
         sc = new Scanner(System.in);
+        player = new Player();
+        player.setName("Default");
         ImportRecords();
+        Sort();
         NewPlayer();
 
     }
@@ -57,17 +71,17 @@ public class ReactBase {
     public boolean Run() throws InterruptedException {
         switch (Menu()) {
             case CM_PLAY:
-                long LastTime = Play(player);
-                Sort(player, LastTime);
-                ShowRecords(player, LastTime);
-                SaveRecords(player,LastTime);
+                Play();
+                ShowRecords();
+                SaveRecords();
                 return true;
             case CM_CHANGE_PLAYER:
                 NewPlayer();
                 return true;
 
             case CM_TOP10:
-                ShowRecords("", 0);
+                Sort();
+                ShowTop10();
                 return true;
             case CM_QUIT:
                 sc.close();
@@ -77,21 +91,72 @@ public class ReactBase {
         return true;
     }
 
-    public void ImportRecords()  {
+    public int findIndex(){
+        int index=0;
+
+        for (int i = 0; i < records.size(); i++) {
+            if(records.get(i).getHighScore()>player.getHighScore()){
+                index=i;
+
+                break;
+            }else if(player.getHighScore()>records.get(records.size()-1).getHighScore()){
+
+                index=records.size();
+
+            }
+        }
+
+
+        return index;
+    }
+
+    private void ShowRecords() {
+        System.out.println("index je "+ findIndex());
+        if (player.getHighScore()!=0) {
+            int index = findIndex();
+            int detract = 5;
+            int plus = 5;
+
+            if (index < 5) {
+                detract = 5 - index-1;
+            }
+
+            for (int i = index - detract; i < index; i++) {
+
+                System.out.println(i +1+". " + records.get(i).getName() + " " + records.get(i).getHighScore());
+
+            }
+            if (index > records.size() - 5) {
+                plus=records.size()-index;
+            }
+            System.out.println("***************");
+            System.out.println(index +1+ ". " + player.getName() + " " + player.getHighScore());
+            System.out.println("***************");
+            for (int i = index; i < index + plus; i++) {
+
+                System.out.println(i + 2 + ". " + records.get(i).getName() + " " + records.get(i).getHighScore());
+            }
+        }
+
+    }
+
+    public void ImportRecords() {
 
         System.out.println("nacitavam z tabulky");
         try {
-            BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Sebastian\\IdeaProjects\\ReakcnaDoba\\src\\vysledky.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Sebastián\\IdeaProjects\\ReactBase\\opg-reaction-game\\src\\sample\\ReactBase\\vysledky.txt"));
             String record = br.readLine();
-            while(record!=null){
-                records.add(record);
-                record=br.readLine();
+            while (record != null) {
+                String []split = record.split(" ");
+                records.add(new Player(split[0],Float.parseFloat(split[1])));
+                record = br.readLine();
 
             }
             br.close();
             System.out.println(records.toString());
-        }catch (IOException e){ System.out.println("Problem s citanim zo  subora");}
-
+        } catch (IOException e) {
+            System.out.println("Problem s citanim zo  subora");
+        }
 
 
     }
@@ -99,12 +164,12 @@ public class ReactBase {
     public void NewPlayer() {
 
         System.out.println("Zadajte svoje meno : ");
-        player = sc.nextLine();
-         while(player.equals("")){
-             System.out.println("Meno nemoze byt prazdne!");
-             player= sc.nextLine();
+        player.setName(sc.nextLine());
+        while (player.getName().equals("")) {
+            System.out.println("Meno nemoze byt prazdne!");
+            player.setName(sc.nextLine());
 
-         }
+        }
 
 
     }
@@ -125,8 +190,8 @@ public class ReactBase {
 
     }
 
-    public long Play(String who) throws InterruptedException {
-        long finalTime=0;
+    public void Play() throws InterruptedException {
+        long finalTime = 0;
         System.out.println("Pripraveny ? Stlac ENTER!!!");
         if (enterPressed()) {
             System.out.println("POZOOOOR! ");
@@ -141,29 +206,39 @@ public class ReactBase {
             if (enterPressed()) {
                 if (System.currentTimeMillis() - start < 2) {
                     System.out.println("podvzdzal si");
+                    player.setHighScore(0);
                 } else {
                     finalTime = (System.currentTimeMillis() - start);
+                    player.setHighScore(finalTime);
                     System.out.println(finalTime);
                 }
             }
         }
-        return finalTime;
+
     }
 
-    public void Sort(String who, long record) {
+    public void Sort() {
+
+        Collections.sort(records);
     }
 
-    public void ShowRecords(String who, long record) {
+    public void ShowTop10() {
+        for (int i = 0; i < 10; i++) {
+            System.out.println(i+1+"."+"\t"+records.get(i).getName()+"\t"+records.get(i).getHighScore());
+        }
+
     }
 
-    public void SaveRecords(String player,long time) {
+    public void SaveRecords() {
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\Users\\Sebastian\\IdeaProjects\\ReakcnaDoba\\src\\vysledky.txt"));
+           if (player.getHighScore()!=0){
+            BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\Users\\Sebastián\\IdeaProjects\\ReactBase\\opg-reaction-game\\src\\sample\\ReactBase\\vysledky.txt", true));
             bw.newLine();
-            bw.write(player +"-"+ time);
-            System.out.println("zapisujem do tabulky "+player+" "+time);
+            bw.write(player.getName() + " " + player.getHighScore());
+            System.out.println("zapisujem do tabulky " + player.getName() + " " + player.getHighScore());
             bw.close();
-        }catch (IOException e){
+           }
+        } catch (IOException e) {
             System.out.println("Problem so zapisovanim do subora");
         }
     }
