@@ -80,7 +80,6 @@ public class ReactBase {
                 return true;
 
             case CM_TOP10:
-                Sort();
                 ShowTop10();
                 return true;
             case CM_QUIT:
@@ -111,6 +110,8 @@ public class ReactBase {
     }
 
     private void ShowRecords() {
+        ImportRecords();
+        Sort();
         System.out.println("index je "+ findIndex());
         if (player.getHighScore()!=0) {
             int index = findIndex();
@@ -118,30 +119,32 @@ public class ReactBase {
             int plus = 5;
 
             if (index < 5) {
-                detract = 5 - index-1;
+                detract =  index;
             }
 
             for (int i = index - detract; i < index; i++) {
 
-                System.out.println(i +1+". " + records.get(i).getName() + " " + records.get(i).getHighScore());
+                System.out.println(i+1+". " + records.get(i).getName() + " " + records.get(i).getHighScore());
 
             }
             if (index > records.size() - 5) {
                 plus=records.size()-index;
             }
             System.out.println("***************");
-            System.out.println(index +1+ ". " + player.getName() + " " + player.getHighScore());
+            System.out.println(index+1+ ". " + player.getName() + " " + player.getHighScore());
             System.out.println("***************");
             for (int i = index; i < index + plus; i++) {
 
-                System.out.println(i + 2 + ". " + records.get(i).getName() + " " + records.get(i).getHighScore());
+                System.out.println(i +2 + ". " + records.get(i).getName() + " " + records.get(i).getHighScore());
             }
         }
+
 
     }
 
     public void ImportRecords() {
 
+        records.clear();
         System.out.println("nacitavam z tabulky");
         try {
             BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Sebastián\\IdeaProjects\\ReactBase\\opg-reaction-game\\src\\sample\\ReactBase\\vysledky.txt"));
@@ -223,8 +226,10 @@ public class ReactBase {
     }
 
     public void ShowTop10() {
+        ImportRecords();
+        Sort();
         for (int i = 0; i < 10; i++) {
-            System.out.println(i+1+"."+"\t"+records.get(i).getName()+"\t"+records.get(i).getHighScore());
+            System.out.println(i+1+"."+" "+records.get(i).getName()+" "+records.get(i).getHighScore());
         }
 
     }
