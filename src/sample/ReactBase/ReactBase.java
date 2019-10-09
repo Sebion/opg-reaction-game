@@ -44,12 +44,16 @@ public class ReactBase {
     final int CM_TOP10 = 3;
     final int CM_QUIT = 4;
 
+    private static String filePath;
+
     private Scanner sc;
     private ArrayList<Player> records;
     private Player player;
 
 
     public static void main(String[] args) throws InterruptedException {
+        filePath = new File("").getAbsolutePath();
+        filePath = filePath.concat("/src/sample/ReactBase/vysledky.txt");
         boolean gameOn;
         ReactBase reactBase = new ReactBase();
         do {
@@ -85,7 +89,6 @@ public class ReactBase {
             case CM_QUIT:
                 sc.close();
                 return false;
-
         }
         return true;
     }
@@ -94,18 +97,13 @@ public class ReactBase {
         int index=0;
 
         for (int i = 0; i < records.size(); i++) {
-            if(records.get(i).getHighScore()>player.getHighScore()){
-                index=i;
-
+            if (records.get(i).getHighScore() > player.getHighScore()) {
+                index = i;
                 break;
-            }else if(player.getHighScore()>records.get(records.size()-1).getHighScore()){
-
-                index=records.size();
-
+            } else if (player.getHighScore() > records.get(records.size() - 1).getHighScore()) {
+                index = records.size();
             }
         }
-
-
         return index;
     }
 
@@ -117,15 +115,11 @@ public class ReactBase {
             int index = findIndex();
             int detract = 5;
             int plus = 5;
-
             if (index < 5) {
                 detract =  index;
             }
-
             for (int i = index - detract; i < index; i++) {
-
                 System.out.println(i+1+". " + records.get(i).getName() + " " + records.get(i).getHighScore());
-
             }
             if (index > records.size() - 5) {
                 plus=records.size()-index;
@@ -134,20 +128,17 @@ public class ReactBase {
             System.out.println(index+1+ ". " + player.getName() + " " + player.getHighScore());
             System.out.println("***************");
             for (int i = index; i < index + plus; i++) {
-
                 System.out.println(i +2 + ". " + records.get(i).getName() + " " + records.get(i).getHighScore());
             }
         }
-
-
     }
 
     public void ImportRecords() {
-
         records.clear();
         System.out.println("nacitavam z tabulky");
         try {
-            BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Sebastián\\IdeaProjects\\ReactBase\\opg-reaction-game\\src\\sample\\ReactBase\\vysledky.txt"));
+
+            BufferedReader br = new BufferedReader(new FileReader(filePath));
             String record = br.readLine();
             while (record != null) {
                 String []split = record.split(" ");
@@ -156,25 +147,19 @@ public class ReactBase {
 
             }
             br.close();
-            System.out.println(records.toString());
         } catch (IOException e) {
             System.out.println("Problem s citanim zo  subora");
+            e.printStackTrace();
         }
-
-
     }
 
     public void NewPlayer() {
-
         System.out.println("Zadajte svoje meno : ");
         player.setName(sc.nextLine());
         while (player.getName().equals("")) {
             System.out.println("Meno nemoze byt prazdne!");
             player.setName(sc.nextLine());
-
         }
-
-
     }
 
     public int Menu() {
@@ -182,7 +167,6 @@ public class ReactBase {
                 "    2 - Zmena hráča\n" +
                 "    3 - TOP 10\n" +
                 "    4 - Koniec");
-
         while (true) {
             int input = sc.nextInt();
             if (input < 5 && input > 0) {
@@ -190,7 +174,6 @@ public class ReactBase {
                 return input;
             } else System.out.println("Vyberte si z menu moznost 1-4.");
         }
-
     }
 
     public void Play() throws InterruptedException {
@@ -201,8 +184,6 @@ public class ReactBase {
             long time = (int) (Math.random() * 2500 + 500);
             long curTime = System.currentTimeMillis();
             while (System.currentTimeMillis() <= curTime + time) {
-
-
             }
             System.out.println("START!");
             long start = System.currentTimeMillis();
@@ -217,11 +198,9 @@ public class ReactBase {
                 }
             }
         }
-
     }
 
     public void Sort() {
-
         Collections.sort(records);
     }
 
@@ -231,13 +210,12 @@ public class ReactBase {
         for (int i = 0; i < 10; i++) {
             System.out.println(i+1+"."+" "+records.get(i).getName()+" "+records.get(i).getHighScore());
         }
-
     }
 
     public void SaveRecords() {
         try {
            if (player.getHighScore()!=0){
-            BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\Users\\Sebastián\\IdeaProjects\\ReactBase\\opg-reaction-game\\src\\sample\\ReactBase\\vysledky.txt", true));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true));
             bw.newLine();
             bw.write(player.getName() + " " + player.getHighScore());
             System.out.println("zapisujem do tabulky " + player.getName() + " " + player.getHighScore());
@@ -245,13 +223,11 @@ public class ReactBase {
            }
         } catch (IOException e) {
             System.out.println("Problem so zapisovanim do subora");
+            e.printStackTrace();
         }
     }
 
-
     private boolean enterPressed() {
-
-
         String enter = sc.nextLine();
         while (!enter.equals("")) {
             enter = sc.nextLine();

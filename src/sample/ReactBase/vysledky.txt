@@ -13,11 +13,11 @@ klijoijok 600.0
 ppppju 3000.0
 oioo 2580.0
 ooo 672.0
-gfawg 1452.0
-feas 3254.0
-pop1 638.0
-1poff 528.0
-dawf 783.0
+gfawg 142.0
+feas 325.0
+pop1 63.0
+1poff 52.0
+dawf 78.0
 ggawgag 531.0
 ndn 3369.0
 gahha 486.0
@@ -26,3 +26,4 @@ ggwag 507.0
 faghah 834.0
 faghah 574.0
 faghah 2629.0
+Berko 493.0
