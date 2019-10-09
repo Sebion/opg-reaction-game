@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.Scoreboard10Controller">
+   <children>
+      <TableView fx:id="tableView" layoutX="111.0" layoutY="89.0" prefHeight="222.0" prefWidth="379.0">
+        <columns>
+          <TableColumn fx:id="tableColumnOrder" prefWidth="75.0" text="Poradie" />
+          <TableColumn fx:id="tableColumnPlayerName" prefWidth="185.0" text="Meno Hráča" />
+            <TableColumn fx:id="tableColumnScore" prefWidth="118.0" text="Skóre" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

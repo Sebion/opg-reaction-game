@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import sample.Constants;
+import sample.FXMLPATH;
 import sample.FileController;
 import sample.Player;
 
@@ -32,7 +33,6 @@ public class PlayController extends Controller implements Initializable {
 
     @FXML
     public void on_back_button_pressed() {
-
         goBack(backButton.getScene());
     }
 
@@ -53,29 +53,25 @@ public class PlayController extends Controller implements Initializable {
 
         gameButton.setOnAction((event) -> {
             gameButton.setDisable(true);
-
             long finalTime = System.currentTimeMillis() - startTime;
             if (finalTime < 100) {
+                //Cheater
                 gameButton.setText("Cheater!");
             } else {
+                //Vsetko v pohode
                 gameButton.setText(String.valueOf(finalTime));
                 ArrayList<Player> players = fileController.read();
                 for (int i = 0; i < players.size(); i++) {
                     if (players.get(i).getName().equals(player.getName())) {
                         if (players.get(i).getHighScore() > finalTime) {
                             fileController.write(player.getName(), String.valueOf(finalTime));
-                            return;
+                            //Create new scene with score
+                            createNewScene(FXMLPATH.Scoreboard_10, Constants.SCOREBOARD_10_TITLE, player);
                         }
-
                     }
                 }
                 fileController.write(player.getName(), String.valueOf(finalTime));
             }
-
-
         });
-
     }
-
-
 }

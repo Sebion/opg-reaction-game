@@ -3,9 +3,11 @@ package sample.Controllers;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sample.Constants;
 import sample.FXMLPATH;
+import sample.Player;
 
 import java.io.IOException;
 
@@ -32,6 +34,23 @@ class Controller {
 
     public void goBack(Scene scene){
         setSceneTo(scene, FXMLPATH.MAIN_MENU, Constants.APP_NAME);
+    }
 
+    public void createNewScene(String fxml, String title, Player player) {
+        Stage stage =  new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        try {
+            Parent root = loader.load();
+            Scoreboard10Controller scoreboard10Controller = loader.getController();
+            scoreboard10Controller.onCreate(player);
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle(title);
+            stage.setResizable(false);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
