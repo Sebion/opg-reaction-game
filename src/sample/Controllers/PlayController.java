@@ -60,20 +60,10 @@ public class PlayController extends Controller implements Initializable {
             } else {
                 //Vsetko v pohode
                 gameButton.setText(String.valueOf(finalTime));
-                ArrayList<Player> players = fileController.read();
-                for (int i = 0; i < players.size(); i++) {
-                    if (players.get(i).getName().equals(player.getName())) {
-                        if (players.get(i).getHighScore() > finalTime) {
-                            fileController.write(player.getName(), String.valueOf(finalTime));
-//                            Create new scene with scoreboard
-//                            player.setName("You");
-//                            player.setHighScore(finalTime);
-                            createNewScene(FXMLPATH.Scoreboard_10, Constants.SCOREBOARD_10_TITLE, player, finalTime);
-//                            return;
-                        }
-                    }
-                }
                 fileController.write(player.getName(), String.valueOf(finalTime));
+//                player.setName("You");
+                player.setHighScore(finalTime);
+                createNewScene(FXMLPATH.Scoreboard_10, Constants.SCOREBOARD_10_TITLE, player);
             }
         });
     }

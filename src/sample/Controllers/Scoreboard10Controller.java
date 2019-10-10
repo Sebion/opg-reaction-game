@@ -28,8 +28,8 @@ public class Scoreboard10Controller extends Controller {
     @FXML
     private Label labelYourScore;
 
-    public void onCreate(Player player, float highScore) {
-        labelYourScore.setText(String.valueOf(highScore));
+    public void onCreate(Player player) {
+        labelYourScore.setText(String.valueOf(player.getHighScore()));
         FileController fileController = new FileController();
         players = fileController.read();
         Collections.sort(players);
