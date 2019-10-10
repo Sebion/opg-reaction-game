@@ -65,12 +65,11 @@ public class PlayController extends Controller implements Initializable {
                     if (players.get(i).getName().equals(player.getName())) {
                         if (players.get(i).getHighScore() > finalTime) {
                             fileController.write(player.getName(), String.valueOf(finalTime));
-                            //Create new scene with score
-                            createNewScene(FXMLPATH.Scoreboard_10, Constants.SCOREBOARD_10_TITLE, player);
                         }
                     }
                 }
-                fileController.write(player.getName(), String.valueOf(finalTime));
+                //Create new scene with scoreboard
+                createNewScene(FXMLPATH.Scoreboard_10, Constants.SCOREBOARD_10_TITLE, player);
             }
         });
     }

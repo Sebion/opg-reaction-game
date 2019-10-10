@@ -7,7 +7,7 @@ public class Player implements Comparable{
     private String name="Default";
     private float highScore=0;
     private float actualScore;
-    private float index;
+    private int index;
 
     public Player(){}
 
@@ -26,11 +26,11 @@ public class Player implements Comparable{
         //return compareage-this.studentage;
     }
 
-    public float getIndex() {
+    public int getIndex() {
         return index;
     }
 
-    public void setIndex(float index) {
+    public void setIndex(int index) {
         this.index = index;
     }
 

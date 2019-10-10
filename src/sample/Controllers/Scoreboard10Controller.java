@@ -47,7 +47,7 @@ public class Scoreboard10Controller extends Controller {
     private void bindDataToTableView(ArrayList<Player> play10) {
         tableColumnOrder.setCellValueFactory(new PropertyValueFactory("index"));
         tableColumnPlayerName.setCellValueFactory(new PropertyValueFactory("name"));
-        tableColumnScore.setCellValueFactory(new PropertyValueFactory("actualScore"));
+        tableColumnScore.setCellValueFactory(new PropertyValueFactory("highScore"));
         ObservableList<Player> players = FXCollections.observableList(play10);
         tableView.setItems(players);
     }
