@@ -3,13 +3,13 @@ package sample.Controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import sample.FileController;
 import sample.Player;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -25,9 +25,11 @@ public class Scoreboard10Controller extends Controller {
     private TableColumn<Player, String> tableColumnPlayerName;
     @FXML
     private TableColumn<Player, Float> tableColumnScore;
+    @FXML
+    private Label labelYourScore;
 
-    public void onCreate(Player player) {
-
+    public void onCreate(Player player, float highScore) {
+        labelYourScore.setText(String.valueOf(highScore));
         FileController fileController = new FileController();
         players = fileController.read();
         Collections.sort(players);

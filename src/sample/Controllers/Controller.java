@@ -36,19 +36,19 @@ class Controller {
         setSceneTo(scene, FXMLPATH.MAIN_MENU, Constants.APP_NAME);
     }
 
-    public void createNewScene(String fxml, String title, Player player) {
+    public void createNewScene(String fxml, String title, Player player, float highScore) {
         Stage stage =  new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         try {
             Parent root = loader.load();
             Scoreboard10Controller scoreboard10Controller = loader.getController();
-            scoreboard10Controller.onCreate(player);
+            scoreboard10Controller.onCreate(player, highScore);
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.setTitle(title);
             stage.setResizable(false);
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.show();
+            stage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
         }

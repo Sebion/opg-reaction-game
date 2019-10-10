@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,5 +14,6 @@
             <TableColumn fx:id="tableColumnScore" prefWidth="118.0" text="Skóre" />
         </columns>
       </TableView>
+      <Label fx:id="labelYourScore" layoutX="283.0" layoutY="45.0" text="Label" />
    </children>
 </AnchorPane>
